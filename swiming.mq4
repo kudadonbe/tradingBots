@@ -40,7 +40,7 @@ void OnStart()
             if (PositionSelect(NULL))
             {
                 ticket = OrderClose(OrderTicket(), OrderLots(), MarketInfo(OrderSymbol(), MODE_BID), Slippage, clrNone);
-                if (ticket < 0)
+                if (ticket != -1)
                     Print("Error closing sell order: ", GetLastError());
             }
             
@@ -57,7 +57,7 @@ void OnStart()
             if (PositionSelect(NULL))
             {
                 ticket = OrderClose(OrderTicket(), OrderLots(), MarketInfo(OrderSymbol(), MODE_ASK), Slippage, clrNone);
-                if (ticket < 0)
+                if (ticket != -1)
                     Print("Error closing buy order: ", GetLastError());
             }
             
@@ -68,4 +68,6 @@ void OnStart()
         }
         
         // Sleep for a short while to avoid high CPU usage
-       
+        Sleep(1000);
+    }
+}
